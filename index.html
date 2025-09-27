@@ -1,0 +1,3500 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD - Black Dolphin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 20, 40, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 20, 40, 0.8), rgba(0, 50, 100, 0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="whale" cx="50%" cy="50%"><stop offset="0%" stop-color="%23001428"/><stop offset="100%" stop-color="%23003366"/></radialGradient></defs><rect width="1200" height="800" fill="url(%23whale)"/><ellipse cx="600" cy="400" rx="200" ry="80" fill="%23ffffff" opacity="0.1"/><path d="M400,350 Q600,300 800,350 Q700,450 400,350" fill="%23ffffff" opacity="0.05"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M0,50 Q25,30 50,50 T100,50 V100 H0 Z" fill="rgba(0,212,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23waves)"/></svg>');
+            animation: wave 20s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-50px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ffffff, #87ceeb);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            text-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Dolphin Animation */
+        .dolphin-container {
+            position: absolute;
+            bottom: 15%;
+            left: -200px;
+            animation: swimAcross 25s linear infinite;
+        }
+
+        .dolphin {
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(45deg, #333333, #666666);
+            border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+            position: relative;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+        }
+
+        .dolphin::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border-left: 25px solid #333333;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+        }
+
+        .dolphin::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 20px solid #ff6b35;
+        }
+
+        @keyframes swimAcross {
+            0% { 
+                left: -200px; 
+                transform: rotateY(0deg) rotateZ(0deg);
+            }
+            25% {
+                transform: rotateY(0deg) rotateZ(-10deg);
+            }
+            48% { 
+                left: calc(100vw - 100px); 
+                transform: rotateY(0deg) rotateZ(0deg);
+            }
+            52% { 
+                left: calc(100vw - 100px); 
+                transform: rotateY(180deg) rotateZ(0deg);
+            }
+            75% {
+                transform: rotateY(180deg) rotateZ(10deg);
+            }
+            100% { 
+                left: -200px; 
+                transform: rotateY(180deg) rotateZ(0deg);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #001428, #003366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: #001428;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .brand-logo {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #001428, #003366, #00d4ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(0, 212, 255, 0.2), transparent);
+            animation: rotate 4s linear infinite;
+        }
+
+        .brand-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            z-index: 2;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: #001428;
+            color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #001428 0%, #002855 50%, #003d82 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .image-container {
+            width: 280px;
+            height: 280px;
+            position: relative;
+            transition: all 0.4s ease;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.1),
+                0 6px 20px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border: 1px solid #e0e0e0;
+        }
+
+        .new-product-card:hover .image-container {
+            transform: scale(1.05) rotateZ(1deg);
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                0 12px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+
+
+
+
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: rotate 8s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 40px 100px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        .tshirt-container {
+            perspective: 1200px;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .tshirt {
+            width: 350px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .tshirt:hover {
+            transform: rotateY(12deg) rotateX(8deg) translateY(-20px);
+        }
+
+        .tshirt:hover .sleeve-left {
+            transform: rotate(-18deg) translateX(-5px);
+        }
+
+        .tshirt:hover .sleeve-right {
+            transform: rotate(18deg) translateX(5px);
+        }
+
+        /* Hoodie Styles */
+        .hoodie {
+            width: 350px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .hoodie:hover {
+            transform: rotateY(12deg) rotateX(8deg) translateY(-20px);
+        }
+
+        .hoodie-front {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: visible;
+        }
+
+        .hoodie-body {
+            width: 260px;
+            height: 320px;
+            background: linear-gradient(145deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%);
+            margin: 0 auto;
+            position: relative;
+            border-radius: 15px 15px 35px 35px;
+            box-shadow: 
+                0 25px 50px rgba(231, 76, 60, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hoodie-body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%);
+            pointer-events: none;
+            border-radius: 15px 15px 35px 35px;
+        }
+
+        .hoodie-sleeves {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 360px;
+            height: 280px;
+            z-index: -1;
+        }
+
+        .hoodie-sleeve-left,
+        .hoodie-sleeve-right {
+            position: absolute;
+            width: 90px;
+            height: 240px;
+            background: linear-gradient(145deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%);
+            border-radius: 45px;
+            box-shadow: 0 15px 30px rgba(231, 76, 60, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hoodie-sleeve-left {
+            left: 0;
+            transform: rotate(-10deg);
+        }
+
+        .hoodie-sleeve-right {
+            right: 0;
+            transform: rotate(10deg);
+        }
+
+        .hoodie-hood {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 120px;
+            background: linear-gradient(145deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%);
+            border-radius: 90px 90px 20px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.3);
+            z-index: 1;
+        }
+
+        .hoodie-hood::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            height: 80px;
+            background: linear-gradient(145deg, #c0392b 0%, #a93226 50%, #c0392b 100%);
+            border-radius: 75px 75px 15px 15px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hoodie-pocket {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 80px;
+            background: linear-gradient(145deg, #c0392b 0%, #a93226 50%, #c0392b 100%);
+            border-radius: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hoodie-pocket::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            right: 10px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
+            border-radius: 1px;
+        }
+
+        .hoodie-ribbing {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 25px;
+            background: linear-gradient(145deg, #a93226 0%, #922b21 50%, #a93226 100%);
+            border-radius: 0 0 35px 35px;
+        }
+
+        .hoodie-ribbing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 3px,
+                rgba(0, 0, 0, 0.1) 3px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            border-radius: 0 0 35px 35px;
+        }
+
+        .hoodie-sleeve-ribbing {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 15px;
+            background: linear-gradient(145deg, #a93226 0%, #922b21 50%, #a93226 100%);
+            border-radius: 35px;
+        }
+
+        .hoodie-sleeve-left .hoodie-sleeve-ribbing,
+        .hoodie-sleeve-right .hoodie-sleeve-ribbing {
+            background: repeating-linear-gradient(
+                90deg,
+                #a93226,
+                #a93226 3px,
+                #922b21 3px,
+                #922b21 4px
+            );
+        }
+
+        .hoodie:hover .hoodie-sleeve-left {
+            transform: rotate(-15deg) translateX(-8px);
+        }
+
+        .hoodie:hover .hoodie-sleeve-right {
+            transform: rotate(15deg) translateX(8px);
+        }
+
+        .hoodie-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.2));
+            border-radius: 40px;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .hoodie:hover .hoodie-glow {
+            opacity: 1;
+        }
+
+        /* Professional Hoodie Styles */
+        .professional-product-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 35px;
+            padding: 3rem;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+            max-width: 600px;
+        }
+
+        .professional-product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 35px 80px rgba(0, 212, 255, 0.25);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .product-showcase {
+            margin-bottom: 2.5rem;
+        }
+
+        .view-selector {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: rgba(0, 20, 40, 0.05);
+            padding: 0.5rem;
+            border-radius: 25px;
+        }
+
+        .view-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: transparent;
+            color: #666;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .product-view {
+            display: none;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .product-view.active {
+            display: block;
+        }
+
+        /* Model View Styles */
+        .model-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-figure {
+            position: relative;
+            height: 350px;
+            width: 200px;
+        }
+
+        .model-head {
+            width: 60px;
+            height: 70px;
+            background: linear-gradient(135deg, #fdbcb4 0%, #f4a6a0 100%);
+            border-radius: 50% 50% 45% 45%;
+            margin: 0 auto 10px;
+            position: relative;
+        }
+
+        .model-neck {
+            width: 30px;
+            height: 20px;
+            background: linear-gradient(135deg, #fdbcb4 0%, #f4a6a0 100%);
+            margin: 0 auto;
+        }
+
+        .model-torso {
+            width: 140px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .oversize-hoodie {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .hoodie-body-model {
+            width: 140px;
+            height: 160px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 15px 15px 25px 25px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .hoodie-hood-model {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 60px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 50px 50px 10px 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hoodie-sleeves-model {
+            position: absolute;
+            top: 15px;
+            width: 180px;
+            left: -20px;
+            height: 120px;
+        }
+
+        .sleeve-left-model,
+        .sleeve-right-model {
+            position: absolute;
+            width: 45px;
+            height: 110px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .sleeve-left-model {
+            left: 0;
+            transform: rotate(-20deg);
+        }
+
+        .sleeve-right-model {
+            right: 0;
+            transform: rotate(20deg);
+        }
+
+        .front-logo {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .bd-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #00d4ff;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.6rem;
+            color: #87ceeb;
+            font-weight: 500;
+        }
+
+        .kangaroo-pocket-model {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 35px;
+            background: linear-gradient(145deg, #0d0d0d 0%, #000000 50%, #0d0d0d 100%);
+            border-radius: 17px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .stitching-details {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 100%;
+        }
+
+        .stitch-line {
+            position: absolute;
+            background: rgba(0, 212, 255, 0.3);
+            height: 1px;
+        }
+
+        .stitch-1 {
+            top: 20px;
+            left: 0;
+            right: 0;
+        }
+
+        .stitch-2 {
+            bottom: 40px;
+            left: 0;
+            right: 0;
+        }
+
+        /* Render Views */
+        .hoodie-render {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .render-hoodie {
+            width: 280px;
+            height: 320px;
+            position: relative;
+        }
+
+        .render-hood {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 100px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 80px 80px 15px 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .render-body {
+            width: 220px;
+            height: 280px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            margin: 0 auto;
+            border-radius: 15px 15px 30px 30px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .render-sleeves {
+            position: absolute;
+            top: 20px;
+            width: 320px;
+            left: -20px;
+            height: 200px;
+        }
+
+        .render-sleeve-l,
+        .render-sleeve-r {
+            position: absolute;
+            width: 70px;
+            height: 180px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 35px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .render-sleeve-l {
+            left: 0;
+            transform: rotate(-8deg);
+        }
+
+        .render-sleeve-r {
+            right: 0;
+            transform: rotate(8deg);
+        }
+
+        .render-logo {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .render-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #00d4ff;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .render-subtitle {
+            font-size: 0.8rem;
+            color: #87ceeb;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .render-pocket {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(145deg, #0d0d0d 0%, #000000 50%, #0d0d0d 100%);
+            border-radius: 25px;
+            box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Back View */
+        .back-logo {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .back-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00d4ff;
+            letter-spacing: 5px;
+        }
+
+        .back-circle {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #00d4ff;
+            border-radius: 50%;
+            margin: 10px auto;
+            position: relative;
+        }
+
+        .back-circle::before {
+            content: '🐬';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+        }
+
+        /* Flat Lay */
+        .flat-lay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            background: linear-gradient(135deg, #f1f3f4 0%, #e8eaed 100%);
+            border-radius: 20px;
+            perspective: 1000px;
+        }
+
+        .flat-hoodie {
+            width: 300px;
+            height: 350px;
+            position: relative;
+            transform: rotateX(45deg) rotateY(5deg);
+        }
+
+        .flat-hood {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 80px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 70px 70px 10px 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .flat-body {
+            width: 200px;
+            height: 240px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            margin: 20px auto 0;
+            border-radius: 10px 10px 25px 25px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .flat-sleeves {
+            position: absolute;
+            top: 30px;
+            width: 300px;
+            left: 0;
+            height: 160px;
+        }
+
+        .flat-sleeve-left,
+        .flat-sleeve-right {
+            position: absolute;
+            width: 60px;
+            height: 140px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .flat-sleeve-left {
+            left: 10px;
+            transform: rotate(-25deg);
+        }
+
+        .flat-sleeve-right {
+            right: 10px;
+            transform: rotate(25deg);
+        }
+
+        .flat-logo {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .flat-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #00d4ff;
+            letter-spacing: 2px;
+        }
+
+        .flat-pocket {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 40px;
+            background: linear-gradient(145deg, #0d0d0d 0%, #000000 50%, #0d0d0d 100%);
+            border-radius: 20px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .tshirt-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.3), rgba(135, 206, 235, 0.2));
+            border-radius: 40px;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .tshirt:hover .tshirt-glow {
+            opacity: 1;
+        }
+
+        .tshirt-front {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: visible;
+        }
+
+        .tshirt-body {
+            width: 220px;
+            height: 280px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            margin: 0 auto;
+            position: relative;
+            border-radius: 15px 15px 25px 25px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tshirt-body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
+            pointer-events: none;
+            border-radius: 15px 15px 25px 25px;
+        }
+
+        .tshirt-sleeves {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 120px;
+            z-index: -1;
+        }
+
+        .sleeve-left,
+        .sleeve-right {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 40px 40px 20px 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sleeve-left {
+            left: 0;
+            transform: rotate(-15deg);
+        }
+
+        .sleeve-right {
+            right: 0;
+            transform: rotate(15deg);
+        }
+
+        .tshirt-neck {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 35px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+            border-radius: 0 0 35px 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: none;
+            z-index: 2;
+        }
+
+
+        .bd-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .logo-design {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .geometric-circle {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #87ceeb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 30px rgba(0, 212, 255, 0.6),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
+        }
+
+        .geometric-circle::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            border-style: dashed;
+            animation: rotate 10s linear infinite;
+        }
+
+        .dolphin-icon {
+            font-size: 2.5rem;
+            color: #001428;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .bd-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff 0%, #ffffff 50%, #87ceeb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            margin-bottom: 0.8rem;
+            letter-spacing: 4px;
+            position: relative;
+        }
+
+        .bd-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .brand-subtitle {
+            font-size: 0.9rem;
+            color: #87ceeb;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .product-info {
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-info h3 {
+            font-size: 1.8rem;
+            color: #001428;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .product-description {
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .product-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .product-price::before {
+            content: 'Premium Collection';
+            position: absolute;
+            top: -25px;
+            left: 0;
+            font-size: 0.7rem;
+            color: #888;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .color-selection {
+            margin-bottom: 2.5rem;
+        }
+
+        .color-label {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-colors {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 3px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 9px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .color-option[data-color="black"] {
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+        }
+
+        .color-option[data-color="navy"] {
+            background: linear-gradient(135deg, #001428, #002855);
+        }
+
+        .color-option[data-color="gray"] {
+            background: linear-gradient(135deg, #666, #4a4a4a);
+        }
+
+        .color-option.active,
+        .color-option:hover {
+            border-color: #00d4ff;
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .color-option.active::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Hoodie Color Options */
+        .hoodie-color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 3px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hoodie-color-option[data-color="coral"] {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .hoodie-color-option[data-color="navy"] {
+            background: linear-gradient(135deg, #001428, #002855);
+        }
+
+        .hoodie-color-option[data-color="black"] {
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+        }
+
+        .hoodie-color-option.active,
+        .hoodie-color-option:hover {
+            border-color: #00d4ff;
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .hoodie-color-option.active::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Professional Product Info */
+        .professional-product-info {
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .professional-product-info h3 {
+            font-size: 2rem;
+            color: #001428;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .product-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .feature i {
+            color: #00d4ff;
+            font-size: 1.1rem;
+        }
+
+        .feature span {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .professional-description {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .size-guide {
+            margin-bottom: 2rem;
+        }
+
+        .size-label {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .size-option {
+            width: 45px;
+            height: 45px;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .size-option.active,
+        .size-option:hover {
+            border-color: #00d4ff;
+            background: #00d4ff;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .professional-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .professional-colors {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .pro-color-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            cursor: pointer;
+            border: 3px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+        }
+
+        .pro-color-option[data-color="black"] {
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+        }
+
+        .pro-color-option[data-color="gray"] {
+            background: linear-gradient(135deg, #666, #4a4a4a);
+        }
+
+        .pro-color-option[data-color="navy"] {
+            background: linear-gradient(135deg, #001428, #002855);
+        }
+
+        .pro-color-option.active,
+        .pro-color-option:hover {
+            border-color: #00d4ff;
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .pro-color-option.active::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .size-chart-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #00d4ff;
+            background: transparent;
+            color: #00d4ff;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .size-chart-btn:hover {
+            background: #00d4ff;
+            color: white;
+        }
+
+        .professional-add-cart {
+            flex: 2;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #87ceeb 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .professional-add-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+
+
+
+
+        /* Mockup Section Styles */
+        .mockup-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #001428 0%, #002855 50%, #003d82 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .mockup-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 25px;
+            padding: 2rem;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        .mockup-container {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mockup-scene {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .mockup-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .mockup-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #00d4ff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            letter-spacing: 1px;
+        }
+
+        .mockup-info {
+            text-align: center;
+        }
+
+        .mockup-info h3 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .mockup-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Dolphin Jump Mockup */
+        .dolphin-jump {
+            background: linear-gradient(180deg, #87CEEB 0%, #4682B4 50%, #191970 100%);
+        }
+
+        .ocean-background {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+        }
+
+        .wave-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .wave-1 {
+            animation: wave-motion 3s ease-in-out infinite;
+        }
+
+        .wave-2 {
+            height: 20px;
+            bottom: 15px;
+            animation: wave-motion 2.5s ease-in-out infinite reverse;
+        }
+
+        .wave-3 {
+            height: 15px;
+            bottom: 30px;
+            animation: wave-motion 2s ease-in-out infinite;
+        }
+
+        @keyframes wave-motion {
+            0%, 100% { transform: translateX(0) scaleX(1); }
+            50% { transform: translateX(10px) scaleX(1.1); }
+        }
+
+        .dolphin-silhouette {
+            width: 120px;
+            height: 60px;
+            position: relative;
+            animation: dolphin-jump 4s ease-in-out infinite;
+        }
+
+        @keyframes dolphin-jump {
+            0%, 100% { transform: translateY(50px) rotate(-10deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
+        }
+
+        .dolphin-body {
+            width: 100%;
+            height: 100%;
+            background: #2C3E50;
+            border-radius: 50% 30% 30% 50%;
+            position: relative;
+        }
+
+        .dolphin-fin {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25px solid #2C3E50;
+        }
+
+        .dolphin-tail {
+            position: absolute;
+            top: 15px;
+            right: -20px;
+            width: 0;
+            height: 0;
+            border-left: 25px solid #2C3E50;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        .water-splash {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 40px;
+        }
+
+        .splash {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: splash-animation 1s ease-out infinite;
+        }
+
+        .splash-1 {
+            width: 15px;
+            height: 15px;
+            left: 10px;
+            animation-delay: 0s;
+        }
+
+        .splash-2 {
+            width: 20px;
+            height: 20px;
+            left: 30px;
+            animation-delay: 0.2s;
+        }
+
+        .splash-3 {
+            width: 12px;
+            height: 12px;
+            right: 10px;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes splash-animation {
+            0% { transform: translateY(0) scale(0); opacity: 1; }
+            100% { transform: translateY(-30px) scale(1.5); opacity: 0; }
+        }
+
+        /* Geometric Dolphin Mockup */
+        .geometric-dolphin {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .geometric-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .geo-shape {
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .triangle-1 {
+            top: 20px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 40px solid #ffffff;
+            animation: float-shape 6s ease-in-out infinite;
+        }
+
+        .triangle-2 {
+            bottom: 30px;
+            right: 40px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 35px solid #ffffff;
+            animation: float-shape 5s ease-in-out infinite reverse;
+        }
+
+        .circle-1 {
+            top: 50px;
+            right: 60px;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            animation: float-shape 4s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            bottom: 60px;
+            left: 50px;
+            width: 20px;
+            height: 20px;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: float-shape 7s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-shape {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .dolphin-geometric {
+            width: 150px;
+            height: 80px;
+            position: relative;
+        }
+
+        .geo-dolphin-part {
+            position: absolute;
+            background: #2C3E50;
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+        }
+
+        .part-1 {
+            top: 20px;
+            left: 0;
+            width: 40px;
+            height: 30px;
+            transform: rotate(-10deg);
+        }
+
+        .part-2 {
+            top: 15px;
+            left: 30px;
+            width: 50px;
+            height: 35px;
+            transform: rotate(5deg);
+        }
+
+        .part-3 {
+            top: 25px;
+            left: 70px;
+            width: 45px;
+            height: 30px;
+            transform: rotate(-5deg);
+        }
+
+        .part-4 {
+            top: 30px;
+            left: 105px;
+            width: 35px;
+            height: 25px;
+            transform: rotate(15deg);
+        }
+
+        .part-5 {
+            top: 10px;
+            left: 50px;
+            width: 30px;
+            height: 20px;
+            transform: rotate(-20deg);
+        }
+
+        /* Minimalist Dolphin Mockup */
+        .minimalist-dolphin {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .minimal-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .gradient-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, rgba(0, 212, 255, 0.1) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-circle 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-circle {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .dolphin-minimal {
+            width: 200px;
+            height: 100px;
+        }
+
+        .dolphin-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .dolphin-path {
+            fill: #2C3E50;
+            stroke: #00d4ff;
+            stroke-width: 2;
+            animation: draw-path 3s ease-in-out infinite;
+        }
+
+        .dolphin-eye {
+            fill: #ffffff;
+        }
+
+        .dolphin-fin-top {
+            fill: #2C3E50;
+            opacity: 0.8;
+        }
+
+        @keyframes draw-path {
+            0%, 100% { stroke-dasharray: 0, 1000; }
+            50% { stroke-dasharray: 500, 1000; }
+        }
+
+        /* Tribal Dolphin Mockup */
+        .tribal-dolphin {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+        }
+
+        .tribal-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .tribal-pattern {
+            position: absolute;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(139, 69, 19, 0.3),
+                rgba(139, 69, 19, 0.3) 5px,
+                transparent 5px,
+                transparent 15px
+            );
+        }
+
+        .pattern-1 {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+        }
+
+        .pattern-2 {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            transform: rotate(180deg);
+        }
+
+        .pattern-3 {
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 30px;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .dolphin-tribal {
+            width: 140px;
+            height: 70px;
+            position: relative;
+        }
+
+        .tribal-dolphin-body {
+            width: 100%;
+            height: 100%;
+            background: #2C3E50;
+            border-radius: 50% 30% 30% 50%;
+            position: relative;
+        }
+
+        .tribal-line {
+            position: absolute;
+            background: #FFD700;
+            height: 3px;
+        }
+
+        .line-1 {
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            transform: rotate(15deg);
+        }
+
+        .line-2 {
+            top: 35px;
+            left: 30px;
+            width: 30px;
+            transform: rotate(-10deg);
+        }
+
+        .line-3 {
+            top: 45px;
+            left: 15px;
+            width: 50px;
+            transform: rotate(5deg);
+        }
+
+        .line-4 {
+            top: 25px;
+            right: 20px;
+            width: 25px;
+            transform: rotate(-20deg);
+        }
+
+        .tribal-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #FFD700;
+            border-radius: 50%;
+        }
+
+        .dot-1 {
+            top: 15px;
+            left: 50px;
+        }
+
+        .dot-2 {
+            top: 40px;
+            left: 70px;
+        }
+
+        .dot-3 {
+            top: 55px;
+            left: 40px;
+        }
+
+        /* Neon Dolphin Mockup */
+        .neon-dolphin {
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .neon-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .neon-grid {
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.3) 1px, transparent 1px);
+            background-size: 20px 20px;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
+
+        .dolphin-neon {
+            width: 160px;
+            height: 80px;
+            position: relative;
+        }
+
+        .neon-dolphin-outline {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .neon-segment {
+            position: absolute;
+            border: 2px solid #00d4ff;
+            border-radius: 5px;
+            box-shadow: 
+                0 0 10px #00d4ff,
+                inset 0 0 10px #00d4ff;
+            animation: neon-pulse 2s ease-in-out infinite;
+        }
+
+        .seg-1 {
+            top: 20px;
+            left: 0;
+            width: 40px;
+            height: 25px;
+            border-radius: 50% 20% 20% 50%;
+        }
+
+        .seg-2 {
+            top: 15px;
+            left: 35px;
+            width: 50px;
+            height: 30px;
+            border-radius: 30% 30% 30% 30%;
+            animation-delay: 0.2s;
+        }
+
+        .seg-3 {
+            top: 25px;
+            left: 80px;
+            width: 45px;
+            height: 25px;
+            border-radius: 20% 50% 50% 20%;
+            animation-delay: 0.4s;
+        }
+
+        .seg-4 {
+            top: 10px;
+            left: 50px;
+            width: 30px;
+            height: 20px;
+            border-radius: 50% 50% 20% 20%;
+            animation-delay: 0.6s;
+        }
+
+        .neon-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 100px;
+            background: radial-gradient(ellipse, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 10px #00d4ff,
+                    inset 0 0 10px #00d4ff;
+            }
+            50% { 
+                box-shadow: 
+                    0 0 20px #00d4ff,
+                    0 0 30px #00d4ff,
+                    inset 0 0 20px #00d4ff;
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .neon-text {
+            color: #00d4ff;
+            text-shadow: 
+                0 0 10px #00d4ff,
+                0 0 20px #00d4ff,
+                0 0 30px #00d4ff;
+        }
+
+        /* Watercolor Dolphin Mockup */
+        .watercolor-dolphin {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #90caf9 100%);
+        }
+
+        .watercolor-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .watercolor-splash {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: watercolor-flow 6s ease-in-out infinite;
+        }
+
+        .splash-blue {
+            top: 30px;
+            left: 50px;
+            width: 80px;
+            height: 60px;
+            background: radial-gradient(ellipse, #2196f3 0%, rgba(33, 150, 243, 0.3) 70%, transparent 100%);
+            border-radius: 60% 40% 30% 70%;
+        }
+
+        .splash-teal {
+            top: 80px;
+            left: 120px;
+            width: 100px;
+            height: 70px;
+            background: radial-gradient(ellipse, #00bcd4 0%, rgba(0, 188, 212, 0.4) 60%, transparent 100%);
+            border-radius: 30% 70% 60% 40%;
+            animation-delay: 1s;
+        }
+
+        .splash-cyan {
+            top: 120px;
+            left: 80px;
+            width: 90px;
+            height: 80px;
+            background: radial-gradient(ellipse, #00e5ff 0%, rgba(0, 229, 255, 0.3) 50%, transparent 100%);
+            border-radius: 70% 30% 40% 60%;
+            animation-delay: 2s;
+        }
+
+        @keyframes watercolor-flow {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            33% { transform: scale(1.1) rotate(120deg); }
+            66% { transform: scale(0.9) rotate(240deg); }
+        }
+
+        .dolphin-watercolor {
+            width: 150px;
+            height: 75px;
+            position: relative;
+        }
+
+        .watercolor-dolphin-body {
+            width: 100%;
+            height: 100%;
+            background: #2C3E50;
+            border-radius: 50% 30% 30% 50%;
+            position: relative;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+
+        .color-blend {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: overlay;
+        }
+
+        .blend-1 {
+            top: 10px;
+            left: 20px;
+            width: 40px;
+            height: 30px;
+            background: radial-gradient(circle, #2196f3 0%, transparent 70%);
+        }
+
+        .blend-2 {
+            top: 20px;
+            left: 50px;
+            width: 50px;
+            height: 35px;
+            background: radial-gradient(circle, #00bcd4 0%, transparent 60%);
+        }
+
+        .blend-3 {
+            top: 30px;
+            left: 80px;
+            width: 35px;
+            height: 25px;
+            background: radial-gradient(circle, #00e5ff 0%, transparent 80%);
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #87ceeb 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.3);
+        }
+
+        .add-to-cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .add-to-cart-btn:hover::before {
+            left: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.5);
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(-2px);
+            transition: transform 0.1s ease;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f8fbff 100%);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #001428;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #00d4ff;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .tshirt {
+                width: 280px;
+                height: 320px;
+            }
+
+            .tshirt-body {
+                width: 180px;
+                height: 240px;
+            }
+
+            .tshirt-sleeves {
+                width: 250px;
+                height: 100px;
+            }
+
+            .sleeve-left,
+            .sleeve-right {
+                width: 65px;
+                height: 85px;
+            }
+
+            .tshirt-neck {
+                width: 55px;
+                height: 28px;
+            }
+
+            .product-card {
+                margin: 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .bd-text {
+                font-size: 2.2rem;
+            }
+
+            .geometric-circle {
+                width: 80px;
+                height: 80px;
+            }
+
+            .product-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .hoodie {
+                width: 280px;
+                height: 320px;
+            }
+
+            .hoodie-body {
+                width: 200px;
+                height: 260px;
+            }
+
+            .hoodie-sleeves {
+                width: 300px;
+                height: 220px;
+            }
+
+            .hoodie-sleeve-left,
+            .hoodie-sleeve-right {
+                width: 70px;
+                height: 180px;
+            }
+
+            .hoodie-hood {
+                width: 140px;
+                height: 90px;
+            }
+
+            .hoodie-pocket {
+                width: 120px;
+                height: 60px;
+            }
+
+            .professional-product-card {
+                padding: 2rem;
+                max-width: 100%;
+            }
+
+            .view-selector {
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+
+            .view-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .model-figure {
+                height: 280px;
+                width: 160px;
+            }
+
+            .model-head {
+                width: 45px;
+                height: 55px;
+            }
+
+            .model-torso {
+                width: 110px;
+                height: 160px;
+            }
+
+            .hoodie-body-model {
+                width: 110px;
+                height: 130px;
+            }
+
+            .product-features {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .professional-product-info h3 {
+                font-size: 1.6rem;
+            }
+
+            .render-hoodie {
+                width: 220px;
+                height: 260px;
+            }
+
+            .flat-hoodie {
+                width: 240px;
+                height: 280px;
+            }
+
+
+            .mockup-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .mockup-card {
+                padding: 1.5rem;
+            }
+
+            .mockup-container {
+                height: 250px;
+            }
+
+            .mockup-logo {
+                font-size: 1.2rem;
+            }
+
+            .mockup-tagline {
+                font-size: 0.8rem;
+            }
+
+            .dolphin-silhouette {
+                width: 100px;
+                height: 50px;
+            }
+
+            .dolphin-geometric {
+                width: 120px;
+                height: 65px;
+            }
+
+            .dolphin-minimal {
+                width: 160px;
+                height: 80px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .dolphin {
+                width: 80px;
+                height: 45px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 212, 255, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">BD</div>
+            <ul class="nav-links">
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#about">Hakkımızda</a></li>
+                <li><a href="#services">Hizmetler</a></li>
+                <li><a href="#mockups">Mockups</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">BD</h1>
+            <h2 class="hero-subtitle">Black Dolphin</h2>
+            <p class="hero-description">
+                Siyah yunusun çevikliği ve zekâsından ilham alan güçlü çözümlerle geleceği şekillendiren marka.
+                Derinliklerin gizemli gücü ve yunusların zekâsıyla sizlere hizmet sunuyoruz.
+            </p>
+            <a href="#about" class="cta-button">
+                <i class="fas fa-wave-square"></i> Keşfet
+            </a>
+        </div>
+        
+        <!-- Animated Dolphin -->
+        <div class="dolphin-container">
+            <div class="dolphin"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about fade-in" id="about">
+        <div class="container">
+            <h2 class="section-title">Hakkımızda</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Siyah Yunusun Gücü</h3>
+                    <p>
+                        BD markası, siyah yunusların çevikliği, zekâsı ve güçünden ilham alır. 
+                        Yunuslar gibi akıllı, hızlı ve sosyal çözümler sunarak, müşterilerimizin 
+                        ihtiyaçlarını karşılamada öncü olmayı hedefliyoruz.
+                    </p>
+                    <br>
+                    <p>
+                        Siyah yunusun karanlık derinliklerdeki gizemi ve çevikliği gibi, 
+                        sınırsız yaratıcılık ve inovasyon ile geleceğin teknolojilerini bugünden 
+                        sizlere sunuyoruz. Her projemizde yunusların zekâsını ve gücünü yansıtırız.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="brand-logo">
+                        <div class="brand-logo-text">BD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services fade-in" id="services">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Hizmetlerimiz</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Çevik Çözümler</h3>
+                    <p>Yunusların çevikliğinden ilham alan hızlı ve etkili çözümlerle projelerinizi hayata geçiriyoruz.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Sosyal Ağ</h3>
+                    <p>Yunusların sosyal yapısı gibi güçlü iş birliklerini destekleyen çözümler sunuyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mockup Design Section -->
+    <section class="mockup-section fade-in" id="mockups">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Dolphin Mockup Designs</h2>
+            <div class="mockup-grid">
+                <!-- Mockup 1: Classic Dolphin Jump -->
+                <div class="mockup-card">
+                    <div class="mockup-container">
+                        <div class="mockup-scene dolphin-jump">
+                            <div class="ocean-background">
+                                <div class="wave-layer wave-1"></div>
+                                <div class="wave-layer wave-2"></div>
+                                <div class="wave-layer wave-3"></div>
+                            </div>
+                            <div class="dolphin-silhouette jumping">
+                                <div class="dolphin-body"></div>
+                                <div class="dolphin-fin"></div>
+                                <div class="dolphin-tail"></div>
+                                <div class="water-splash">
+                                    <div class="splash splash-1"></div>
+                                    <div class="splash splash-2"></div>
+                                    <div class="splash splash-3"></div>
+                                </div>
+                            </div>
+                            <div class="brand-overlay">
+                                <div class="mockup-logo">BLACK DOLPHIN</div>
+                                <div class="mockup-tagline">Freedom in Motion</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mockup-info">
+                        <h3>Ocean Freedom</h3>
+                        <p>Classic dolphin jump with dynamic water effects</p>
+                    </div>
+                </div>
+
+                <!-- Mockup 2: Geometric Dolphin -->
+                <div class="mockup-card">
+                    <div class="mockup-container">
+                        <div class="mockup-scene geometric-dolphin">
+                            <div class="geometric-background">
+                                <div class="geo-shape triangle-1"></div>
+                                <div class="geo-shape triangle-2"></div>
+                                <div class="geo-shape circle-1"></div>
+                                <div class="geo-shape circle-2"></div>
+                            </div>
+                            <div class="dolphin-geometric">
+                                <div class="geo-dolphin-part part-1"></div>
+                                <div class="geo-dolphin-part part-2"></div>
+                                <div class="geo-dolphin-part part-3"></div>
+                                <div class="geo-dolphin-part part-4"></div>
+                                <div class="geo-dolphin-part part-5"></div>
+                            </div>
+                            <div class="brand-overlay">
+                                <div class="mockup-logo">BLACK DOLPHIN</div>
+                                <div class="mockup-tagline">Modern Design</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mockup-info">
+                        <h3>Geometric Art</h3>
+                        <p>Modern polygonal dolphin design</p>
+                    </div>
+                </div>
+
+                <!-- Mockup 3: Minimalist Dolphin -->
+                <div class="mockup-card">
+                    <div class="mockup-container">
+                        <div class="mockup-scene minimalist-dolphin">
+                            <div class="minimal-background">
+                                <div class="gradient-circle"></div>
+                            </div>
+                            <div class="dolphin-minimal">
+                                <svg class="dolphin-svg" viewBox="0 0 200 100">
+                                    <path class="dolphin-path" d="M20,60 Q50,20 100,40 Q130,50 160,45 Q180,40 190,35 Q185,50 170,60 Q140,70 100,65 Q60,75 20,60 Z"/>
+                                    <circle class="dolphin-eye" cx="70" cy="45" r="3"/>
+                                    <path class="dolphin-fin-top" d="M80,30 Q90,20 100,25 Q95,35 80,40 Z"/>
+                                </svg>
+                            </div>
+                            <div class="brand-overlay">
+                                <div class="mockup-logo">BLACK DOLPHIN</div>
+                                <div class="mockup-tagline">Pure Essence</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mockup-info">
+                        <h3>Minimal Art</h3>
+                        <p>Clean and elegant dolphin silhouette</p>
+                    </div>
+                </div>
+
+                <!-- Mockup 4: Tribal Dolphin -->
+                <div class="mockup-card">
+                    <div class="mockup-container">
+                        <div class="mockup-scene tribal-dolphin">
+                            <div class="tribal-background">
+                                <div class="tribal-pattern pattern-1"></div>
+                                <div class="tribal-pattern pattern-2"></div>
+                                <div class="tribal-pattern pattern-3"></div>
+                            </div>
+                            <div class="dolphin-tribal">
+                                <div class="tribal-dolphin-body">
+                                    <div class="tribal-line line-1"></div>
+                                    <div class="tribal-line line-2"></div>
+                                    <div class="tribal-line line-3"></div>
+                                    <div class="tribal-line line-4"></div>
+                                    <div class="tribal-dot dot-1"></div>
+                                    <div class="tribal-dot dot-2"></div>
+                                    <div class="tribal-dot dot-3"></div>
+                                </div>
+                            </div>
+                            <div class="brand-overlay">
+                                <div class="mockup-logo">BLACK DOLPHIN</div>
+                                <div class="mockup-tagline">Ancient Wisdom</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mockup-info">
+                        <h3>Tribal Spirit</h3>
+                        <p>Traditional tribal dolphin patterns</p>
+                    </div>
+                </div>
+
+                <!-- Mockup 5: Neon Dolphin -->
+                <div class="mockup-card">
+                    <div class="mockup-container">
+                        <div class="mockup-scene neon-dolphin">
+                            <div class="neon-background">
+                                <div class="neon-grid"></div>
+                            </div>
+                            <div class="dolphin-neon">
+                                <div class="neon-dolphin-outline">
+                                    <div class="neon-segment seg-1"></div>
+                                    <div class="neon-segment seg-2"></div>
+                                    <div class="neon-segment seg-3"></div>
+                                    <div class="neon-segment seg-4"></div>
+                                    <div class="neon-glow"></div>
+                                </div>
+                            </div>
+                            <div class="brand-overlay">
+                                <div class="mockup-logo neon-text">BLACK DOLPHIN</div>
+                                <div class="mockup-tagline">Future Vision</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mockup-info">
+                        <h3>Neon Dreams</h3>
+                        <p>Futuristic neon dolphin design</p>
+                    </div>
+                </div>
+
+                <!-- Mockup 6: Watercolor Dolphin -->
+                <div class="mockup-card">
+                    <div class="mockup-container">
+                        <div class="mockup-scene watercolor-dolphin">
+                            <div class="watercolor-background">
+                                <div class="watercolor-splash splash-blue"></div>
+                                <div class="watercolor-splash splash-teal"></div>
+                                <div class="watercolor-splash splash-cyan"></div>
+                            </div>
+                            <div class="dolphin-watercolor">
+                                <div class="watercolor-dolphin-body">
+                                    <div class="color-blend blend-1"></div>
+                                    <div class="color-blend blend-2"></div>
+                                    <div class="color-blend blend-3"></div>
+                                </div>
+                            </div>
+                            <div class="brand-overlay">
+                                <div class="mockup-logo">BLACK DOLPHIN</div>
+                                <div class="mockup-tagline">Artistic Flow</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mockup-info">
+                        <h3>Watercolor Art</h3>
+                        <p>Artistic watercolor dolphin painting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="contact fade-in" id="contact">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 2rem; color: #001428;">Bizimle İletişime Geçin</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Adres</strong><br>
+                            Black Dolphin Merkezi<br>
+                            İstanbul, Türkiye
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Telefon</strong><br>
+                            +90 555 BD DEPTHS
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>E-posta</strong><br>
+                            info@blackdolphin.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <strong>Web</strong><br>
+                            www.blackdolphin.com
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 2rem; color: #001428;">Mesaj Gönder</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Ad Soyad</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Konu</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesaj</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <p>&copy; 2024 BD - Black Dolphin. Tüm hakları saklıdır.</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 20, 40, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(0, 20, 40, 0.95)';
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Professional hoodie view switching
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all views
+                document.querySelectorAll('.product-view').forEach(view => view.classList.remove('active'));
+                
+                // Show selected view
+                const viewType = this.getAttribute('data-view');
+                document.getElementById(viewType + '-view').classList.add('active');
+            });
+        });
+
+        // Size selection
+        document.querySelectorAll('.size-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Professional color selection
+        document.querySelectorAll('.pro-color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.pro-color-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                const color = this.getAttribute('data-color');
+                updateProfessionalHoodieColor(color);
+            });
+        });
+
+        function updateProfessionalHoodieColor(color) {
+            let gradient, darkGradient;
+            
+            switch(color) {
+                case 'black':
+                    gradient = 'linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%)';
+                    darkGradient = 'linear-gradient(145deg, #0d0d0d 0%, #000000 50%, #0d0d0d 100%)';
+                    break;
+                case 'gray':
+                    gradient = 'linear-gradient(145deg, #666 0%, #4a4a4a 50%, #666 100%)';
+                    darkGradient = 'linear-gradient(145deg, #4a4a4a 0%, #333 50%, #4a4a4a 100%)';
+                    break;
+                case 'navy':
+                    gradient = 'linear-gradient(145deg, #001428 0%, #000a14 50%, #001428 100%)';
+                    darkGradient = 'linear-gradient(145deg, #000a14 0%, #000510 50%, #000a14 100%)';
+                    break;
+            }
+            
+            // Update all hoodie elements
+            const elements = [
+                '.hoodie-body-model', '.hoodie-hood-model', '.sleeve-left-model', '.sleeve-right-model',
+                '.render-hood', '.render-body', '.render-sleeve-l', '.render-sleeve-r',
+                '.flat-hood', '.flat-body', '.flat-sleeve-left', '.flat-sleeve-right'
+            ];
+            
+            const darkElements = [
+                '.kangaroo-pocket-model', '.render-pocket', '.flat-pocket'
+            ];
+            
+            elements.forEach(selector => {
+                const el = document.querySelector(selector);
+                if (el) el.style.background = gradient;
+            });
+            
+            darkElements.forEach(selector => {
+                const el = document.querySelector(selector);
+                if (el) el.style.background = darkGradient;
+            });
+        }
+
+        // Size chart functionality
+        document.querySelector('.size-chart-btn')?.addEventListener('click', function() {
+            alert('Beden Tablosu:\n\nS: 66cm (Göğüs)\nM: 71cm (Göğüs)\nL: 76cm (Göğüs)\nXL: 81cm (Göğüs)\nXXL: 86cm (Göğüs)\n\nOversize kesim için normal bedeninizden 1 beden büyük alabilirsiniz.');
+        });
+
+        // Professional add to cart
+        document.querySelector('.professional-add-cart')?.addEventListener('click', function() {
+            // Add animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Show success message
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i> Sepete Eklendi!';
+            this.style.background = '#28a745';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.style.background = 'linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #87ceeb 100%)';
+            }, 2000);
+        });
+
+
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+
+        // Form submission
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mesajınız başarıyla gönderildi! En kısa sürede size geri dönüş yapacağız.');
+            this.reset();
+        });
+
+        // Logo rotation on hover
+        document.querySelector('.brand-logo').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1) rotateY(20deg)';
+        });
+
+        document.querySelector('.brand-logo').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotateY(0deg)';
+        });
+
+        // T-shirt color change functionality
+        document.querySelectorAll('[data-product="tshirt"] .color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from t-shirt options
+                document.querySelectorAll('[data-product="tshirt"] .color-option').forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Change t-shirt color
+                const color = this.getAttribute('data-color');
+                const tshirtBody = document.querySelector('.tshirt-body');
+                const tshirtNeck = document.querySelector('.tshirt-neck');
+                const sleeves = document.querySelectorAll('.sleeve-left, .sleeve-right');
+                
+                let gradient;
+                switch(color) {
+                    case 'black':
+                        gradient = 'linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%)';
+                        break;
+                    case 'navy':
+                        gradient = 'linear-gradient(145deg, #001428 0%, #000a14 50%, #001428 100%)';
+                        break;
+                    case 'gray':
+                        gradient = 'linear-gradient(145deg, #666 0%, #4a4a4a 50%, #666 100%)';
+                        break;
+                }
+                
+                tshirtBody.style.background = gradient;
+                tshirtNeck.style.background = gradient;
+                sleeves.forEach(sleeve => {
+                    sleeve.style.background = gradient;
+                });
+            });
+        });
+
+        // Hoodie color change functionality
+        document.querySelectorAll('[data-product="hoodie"] .hoodie-color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from hoodie options
+                document.querySelectorAll('[data-product="hoodie"] .hoodie-color-option').forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Change hoodie color
+                const color = this.getAttribute('data-color');
+                const hoodieBody = document.querySelector('.hoodie-body');
+                const hoodieHood = document.querySelector('.hoodie-hood');
+                const hoodieSleeves = document.querySelectorAll('.hoodie-sleeve-left, .hoodie-sleeve-right');
+                const hoodiePocket = document.querySelector('.hoodie-pocket');
+                const hoodieRibbing = document.querySelector('.hoodie-ribbing');
+                const sleeveRibbings = document.querySelectorAll('.hoodie-sleeve-ribbing');
+                
+                let gradient, darkGradient;
+                switch(color) {
+                    case 'coral':
+                        gradient = 'linear-gradient(145deg, #e74c3c 0%, #c0392b 50%, #e74c3c 100%)';
+                        darkGradient = 'linear-gradient(145deg, #c0392b 0%, #a93226 50%, #c0392b 100%)';
+                        break;
+                    case 'navy':
+                        gradient = 'linear-gradient(145deg, #001428 0%, #000a14 50%, #001428 100%)';
+                        darkGradient = 'linear-gradient(145deg, #000a14 0%, #000510 50%, #000a14 100%)';
+                        break;
+                    case 'black':
+                        gradient = 'linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%)';
+                        darkGradient = 'linear-gradient(145deg, #0d0d0d 0%, #000000 50%, #0d0d0d 100%)';
+                        break;
+                }
+                
+                hoodieBody.style.background = gradient;
+                hoodieHood.style.background = gradient;
+                hoodieSleeves.forEach(sleeve => {
+                    sleeve.style.background = gradient;
+                });
+                hoodiePocket.style.background = darkGradient;
+                hoodieRibbing.style.background = darkGradient;
+                sleeveRibbings.forEach(ribbing => {
+                    ribbing.style.background = darkGradient;
+                });
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Add animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Show success message
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Sepete Eklendi!';
+                this.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.background = 'linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #87ceeb 100%)';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
